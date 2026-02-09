@@ -1,0 +1,48 @@
+---
+alwaysApply: true
+---
+
+# Project Overview (Unity)
+
+## Versions
+
+- **Unity**: Unity 6.x (currently `6000.3.2f1`)
+- **C#**: 12.0
+- **Rendering**: URP
+- **Input**: New Input System
+- **UI**: Unity UI Canvas / UGUI (primary)
+- **Asset Management**: Addressables (preferred)
+
+## UI Stack Selection
+
+- **This project** explicitly uses **Unity UI Canvas / UGUI** as the **default UI stack for new UI work**.
+- **UI Toolkit** is **optional** and may be used only when explicitly specified for a given feature or demo.
+- See `unity-ui-canvas.mdc` and `unity-ui-toolkit.mdc` for technology-specific rules; **for this project** the Canvas rules are active by default.
+- **Default for other projects** (when not specified in their own overview): still assume **Unity UI Canvas / UGUI** as the UI stack, and treat UI Toolkit as optional/reference until that project’s overview overrides it.
+
+## Architectural Principles
+
+- **Modularity**: Systems should be decoupled; prefer ScriptableObjects for static data/config.
+- **Performance**: Avoid per-frame allocations; avoid heavy `Update()` polling when events suffice.
+- **Maintainability**: Follow naming conventions; keep public APIs documented.
+
+## Asset Loading Policy (IMPORTANT)
+
+- ✅ **Prefer**: **Addressables** for all runtime asset loads.
+- ⚠️ **Migration exception**: `Resources.Load` is **allowed only** for assets under `Assets/Resources/Data/*`
+  (i.e., code may use keys like `"Data/Items/..."`, `"Data/Skills/..."`, `"Data/Monsters/..."` as a fallback until migration is complete).
+- ❌ **Do not use**: `Resources.Load` for anything outside `Resources/Data/*` (e.g., backgrounds/portraits/etc.).
+
+## Always / Never
+
+✅ **ALWAYS**:
+- New Input System
+- Unity UI Canvas / UGUI for new UI in this repo
+- Prefer Addressables
+- `[SerializeField] private` fields (avoid public fields)
+
+❌ **NEVER**:
+- Legacy Input System for new code
+- Introduce hard dependency on UI Toolkit in core/runtime utilities
+- `FindObjectOfType` in `Update()` (or other per-frame searches)
+

@@ -1,0 +1,417 @@
+---
+alwaysApply: true
+---
+
+# Unity Architecture Patterns
+
+## ScriptableObject Architecture
+
+### Event Channels (Decoupled Communication)
+
+```
+using UnityEngine;
+using System;
+
+/// <summary>
+/// Event channel for decoupled communication between systems.
+/// </summary>
+[CreateAssetMenu(fileName = "NewEventChannel", menuName = "Game/Events/Event Channel")]
+public class EventChannel : ScriptableObject
+{
+    private event Action _onEventRaised;
+
+    public void Raise()
+    {
+        _onEventRaised?.Invoke();
+    }
+
+    public void Subscribe(Action handler)
+    {
+        _onEventRaised += handler;
+    }
+
+    public void Unsubscribe(Action handler)
+    {
+        _onEventRaised -= handler;
+    }
+}
+
+/// <summary>
+/// Generic event channel with payload.
+/// </summary>
+[CreateAssetMenu(fileName = "NewEventChannel", menuName = "Game/Events/Event Channel")]
+public class EventChannel<T> : ScriptableObject
+{
+    private event Action<T> _onEventRaised;
+
+    public void Raise(T value)
+    {
+        _onEventRaised?.Invoke(value);
+    }
+
+    public void Subscribe(Action<T> handler)
+    {
+        _onEventRaised += handler;
+    }
+
+    public void Unsubscribe(Action<T> handler)
+    {
+        _onEventRaised -= handler;
+    }
+}
+```
+
+### Usage Example
+
+```
+public class PlayerHealth : MonoBehaviour
+{
+    [SerializeField] private EventChannel<int> _onHealthChanged;
+    [SerializeField] private EventChannel _onPlayerDeath;
+
+    private int _currentHealth = 100;
+
+    public void TakeDamage(int damage)
+    {
+        _currentHealth -= damage;
+        _onHealthChanged?.Raise(_currentHealth);
+
+        if (_currentHealth <= 0)
+        {
+            _onPlayerDeath?.Raise();
+        }
+    }
+}
+
+public class HealthBarUI : MonoBehaviour
+{
+    [SerializeField] private EventChannel<int> _onHealthChanged;
+
+    private void OnEnable()
+    {
+        _onHealthChanged?.Subscribe(UpdateHealthBar);
+    }
+
+    private void OnDisable()
+    {
+        _onHealthChanged?.Unsubscribe(UpdateHealthBar);
+    }
+
+    private void UpdateHealthBar(int health)
+    {
+        // Update UI
+    }
+}
+```
+
+## Dependency Injection Pattern
+
+### Service Locator (Simple DI)
+
+```
+using UnityEngine;
+using System.Collections.Generic;
+
+/// <summary>
+/// Simple service locator for dependency injection.
+/// </summary>
+public class ServiceLocator : MonoBehaviour
+{
+    private static ServiceLocator _instance;
+    private Dictionary<System.Type, object> _services = new Dictionary<System.Type, object>();
+
+    public static ServiceLocator Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<ServiceLocator>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject("ServiceLocator");
+                    _instance = go.AddComponent<ServiceLocator>();
+                    DontDestroyOnLoad(go);
+                }
+            }
+            return _instance;
+        }
+    }
+
+    public void Register<T>(T service) where T : class
+    {
+        _services[typeof(T)] = service;
+    }
+
+    public T Get<T>() where T : class
+    {
+        if (_services.TryGetValue(typeof(T), out object service))
+        {
+            return service as T;
+        }
+        return null;
+    }
+
+    public void Unregister<T>() where T : class
+    {
+        _services.Remove(typeof(T));
+    }
+}
+```
+
+### Usage
+
+```
+public class AudioManager : MonoBehaviour
+{
+    private void Awake()
+    {
+        ServiceLocator.Instance.Register<AudioManager>(this);
+    }
+
+    private void OnDestroy()
+    {
+        ServiceLocator.Instance.Unregister<AudioManager>();
+    }
+
+    public void PlaySound(AudioClip clip) { /* ... */ }
+}
+
+public class PlayerController : MonoBehaviour
+{
+    private AudioManager _audioManager;
+
+    private void Awake()
+    {
+        _audioManager = ServiceLocator.Instance.Get<AudioManager>();
+    }
+}
+```
+
+## Manager Pattern (Singleton with DontDestroyOnLoad)
+
+```
+using UnityEngine;
+
+/// <summary>
+/// Base class for persistent singleton managers.
+/// </summary>
+public abstract class Manager<T> : MonoBehaviour where T : Manager<T>
+{
+    private static T _instance;
+
+    public static T Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<T>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject(typeof(T).Name);
+                    _instance = go.AddComponent<T>();
+                    DontDestroyOnLoad(go);
+                }
+            }
+            return _instance;
+        }
+    }
+
+    protected virtual void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _instance = this as T;
+        DontDestroyOnLoad(gameObject);
+    }
+}
+```
+
+### Usage
+
+```
+public class GameManager : Manager<GameManager>
+{
+    protected override void Awake()
+    {
+        base.Awake();
+        // Additional initialization
+    }
+
+    public void StartGame()
+    {
+        // Game logic
+    }
+}
+```
+
+## State Machine Pattern
+
+```
+using System;
+using System.Collections.Generic;
+
+/// <summary>
+/// Generic state machine for game states.
+/// </summary>
+public class StateMachine<T> where T : Enum
+{
+    private Dictionary<T, IState> _states = new Dictionary<T, IState>();
+    private IState _currentState;
+    private T _currentStateType;
+
+    public T CurrentStateType => _currentStateType;
+
+    public void AddState(T stateType, IState state)
+    {
+        _states[stateType] = state;
+    }
+
+    public void ChangeState(T newStateType)
+    {
+        if (!_states.TryGetValue(newStateType, out IState newState))
+        {
+            Debug.LogError($"State {newStateType} not found!");
+            return;
+        }
+
+        _currentState?.Exit();
+        _currentState = newState;
+        _currentStateType = newStateType;
+        _currentState.Enter();
+    }
+
+    public void Update()
+    {
+        _currentState?.Update();
+    }
+}
+
+public interface IState
+{
+    void Enter();
+    void Update();
+    void Exit();
+}
+```
+
+### Usage
+
+```
+public enum GameState
+{
+    MainMenu,
+    Playing,
+    Paused,
+    GameOver
+}
+
+public class GameStateManager : MonoBehaviour
+{
+    private StateMachine<GameState> _stateMachine;
+
+    private void Awake()
+    {
+        _stateMachine = new StateMachine<GameState>();
+        _stateMachine.AddState(GameState.MainMenu, new MainMenuState());
+        _stateMachine.AddState(GameState.Playing, new PlayingState());
+        _stateMachine.AddState(GameState.Paused, new PausedState());
+        _stateMachine.AddState(GameState.GameOver, new GameOverState());
+
+        _stateMachine.ChangeState(GameState.MainMenu);
+    }
+
+    private void Update()
+    {
+        _stateMachine.Update();
+    }
+}
+```
+
+## Object Pool Pattern
+
+See `unity-performance.mdc` for Unity 6.2 native pooling implementation.
+
+## Observer Pattern
+
+Use Event Channels (ScriptableObject Architecture) or C# events for observer pattern.
+
+## Command Pattern (For Undo/Redo or Input)
+
+```
+using System;
+
+/// <summary>
+/// Command interface for undoable actions.
+/// </summary>
+public interface ICommand
+{
+    void Execute();
+    void Undo();
+}
+
+/// <summary>
+/// Command manager for executing and undoing commands.
+/// </summary>
+public class CommandManager
+{
+    private System.Collections.Generic.Stack<ICommand> _undoStack = new System.Collections.Generic.Stack<ICommand>();
+    private System.Collections.Generic.Stack<ICommand> _redoStack = new System.Collections.Generic.Stack<ICommand>();
+
+    public void ExecuteCommand(ICommand command)
+    {
+        command.Execute();
+        _undoStack.Push(command);
+        _redoStack.Clear(); // Clear redo stack when new command is executed
+    }
+
+    public void Undo()
+    {
+        if (_undoStack.Count > 0)
+        {
+            ICommand command = _undoStack.Pop();
+            command.Undo();
+            _redoStack.Push(command);
+        }
+    }
+
+    public void Redo()
+    {
+        if (_redoStack.Count > 0)
+        {
+            ICommand command = _redoStack.Pop();
+            command.Execute();
+            _undoStack.Push(command);
+        }
+    }
+}
+```
+
+## Best Practices
+
+### Separation of Concerns
+- **Core**: Base systems, managers, utilities
+- **Gameplay**: Game-specific logic, mechanics
+- **UI**: UI controllers and views (UI Toolkit)
+- **Data**: ScriptableObjects, data structures
+
+### Dependency Direction
+- Core → Gameplay → UI
+- Never let Core depend on Gameplay or UI
+- Use interfaces for cross-layer communication
+
+### Assembly Definitions
+- Create separate `.asmdef` files for each major system
+- Reference only what you need
+- Keep Core assembly dependency-free
+
+### ScriptableObject Usage
+- Configuration data (weapons, enemies, items)
+- Event channels for decoupling
+- Runtime variables for shared state
+- Sets for collections (e.g., all enemies, all items)
