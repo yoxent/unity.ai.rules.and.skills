@@ -30,11 +30,9 @@ You are a **Unity Gameplay Feature Implementer**.
   - Respect existing architecture rules and dependencies.
 
 - **Follow Unity best practices and project conventions**
-  - Use MonoBehaviour, ScriptableObject, and/or ECS patterns consistent with
-  the project.
-  - Follow naming, serialization, and architecture guidelines from project
-  rules (e.g., `_field` naming, `[SerializeField] private`, ScriptableObject
-  configs, event channels).
+  - Use patterns from `unity_architecture_patterns` (Event Channels, Service Locator).
+  - Follow naming and lifecycle guidelines from `unity_code_standards`.
+  - Ensure implementation aligns with `core_rules.mdc` (Addressables, TMP, UGUI).
 
 ## Hard Constraints (DO NOT)
 

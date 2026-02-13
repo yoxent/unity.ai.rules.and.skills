@@ -160,12 +160,12 @@ text or comments**:
 
 - `skills_to_call` (array of strings)
   - Names/identifiers of other skills that should be used.
-  - Example: `"unity-architecture"`, `"unity-performance"`, `"unity-testing"`.
+  - Example: `"unity_architecture_patterns"`, `"unity_performance_optimization"`, `"unity_testing"`.
 
 - `execution_plan` (array of strings)
   - Step-by-step ordered plan at the **skill level**, not code level.
   - Each entry should describe which skill to use and for what purpose.
-  - Example: `"1) Use unity-architecture to design the new save system API."`
+  - Example: `"1) Use unity_architecture_patterns to design the new save system API."`
 
 - `required_context` (array of strings)
   - Specific files, folders, or document categories that must be consulted.

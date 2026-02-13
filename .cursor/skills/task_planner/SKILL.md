@@ -113,6 +113,7 @@ Each step object:
 
 - `skill` (string)
   - Name/identifier of the single skill that should execute this step.
+  - Examples: `unity_architecture_patterns`, `unity_performance_optimization`, `unity_input_system`.
 
 - `purpose` (string)
   - Short explanation of what this step accomplishes and, if relevant, which
