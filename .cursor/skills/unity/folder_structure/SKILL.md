@@ -1,6 +1,6 @@
 ---
 name: unity_folder_structure
-description: Organization rules for Assets, Assembly Definitions, Scene Hierarchy, and Prefab structure. Use when the user asks to create new folders, reorganize assets, or setup new systems.
+description: Unity Project Organization. Rules for folder patterns, Assembly Definitions, and Scene/Prefab hierarchies.
 ---
 
 # Unity Project Organization

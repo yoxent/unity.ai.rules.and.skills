@@ -1,0 +1,23 @@
+---
+description: Unity Input System Standards. Triggers on Input Actions and movement scripts.
+globs: ["**/*.inputactions", "**/Input/**", "**/*Input*.cs", "**/*Movement*.cs"]
+---
+
+# Unity Input System Standards (Distilled)
+
+## Setup
+- **Source**: Use `PlayerInputActions` generated C# class.
+- **Actions**: Trigger logic via C# events (`performed`, `canceled`).
+
+## Logic Patterns
+- **Events**: Subscribed/Unsubscribed in `OnEnable`/`OnDisable`.
+- **Rebinding**: Use `InputActionRebindingExtensions` for runtime rebinds.
+- **Vector2**: Raw input should be processed with deadzones/normalization in the Action Map.
+
+## Example
+```csharp
+private void OnEnable() {
+    _actions.Gameplay.Move.performed += ctx => _moveInput = ctx.ReadValue<Vector2>();
+    _actions.Gameplay.Move.canceled += _ => _moveInput = Vector2.zero;
+}
+```

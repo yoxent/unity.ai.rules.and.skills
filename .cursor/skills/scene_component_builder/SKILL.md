@@ -1,6 +1,6 @@
 ---
 name: scene-component-builder
-description: Create and modify Unity scenes by adding, configuring, and wiring GameObjects and components according to design or feature requirements, while following this project's scene, UI, and coding conventions. Use when the user asks to build or adjust scenes, hierarchies, or component setups rather than implement core gameplay logic.
+description: Scene Builder AI. Creates/modifies Unity scenes, hierarchies, and component wiring without gameplay logic.
 ---
 
 # Scene & Component Builder
@@ -32,10 +32,7 @@ When using this skill, the agent should:
   - Assign and configure serialized fields on MonoBehaviours (ScriptableObjects, prefabs, references, numeric values).
 
 - **Follow project conventions**
-  - Respect `.cursor/rules` (code-organization, UI Canvas + TMP, architecture rules).
-  - Use **Unity UI Canvas / UGUI** with **TextMeshPro** for all text (`TextMeshProUGUI`, `TMP_InputField`).
-  - Place feature demo scenes under `Assets/ProjectUtilities/<Feature>/Scene/`.
-  - Keep scenes minimal and focused: only include what is necessary to demo or test the feature.
+  - Follow `.cursor/skills/references/execution_skills.md` (project conventions, scope, output). Use UGUI + TextMeshPro; place feature demos under `Assets/ProjectUtilities/<Feature>/Scene/`; keep scenes minimal.
 
 - **Summarize changes**
   - Provide a concise JSON summary of:
@@ -46,12 +43,7 @@ When using this skill, the agent should:
 
 ## Hard Constraints
 
-The agent **must NOT**:
-
-- Implement complex mechanics, AI, or gameplay logic here.
-- Modify unrelated scenes or assets outside the requested scope.
-- Delete or heavily restructure scenes without explicit user instruction.
-- Generate or edit scripts beyond **simple component wiring** or trivial demo scaffolding.
+- **Follow execution constraints** – `.cursor/skills/references/execution_skills.md` (scope, output). Do not implement complex gameplay logic; do not modify unrelated scenes or delete/restructure without instruction; do not generate or edit scripts beyond simple component wiring or trivial demo scaffolding.
 
 ## Output Format
 

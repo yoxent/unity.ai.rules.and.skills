@@ -1,0 +1,21 @@
+---
+description: Shader & VFX Standards. Triggers on Shaders, VFX Graphs, and Materials.
+globs: ["**/*.shader", "**/*.shadergraph", "**/*.vfx", "**/*.vfxgraph", "**/Shaders/**", "**/VFX/**", "**/*.mat"]
+---
+
+# Shader & VFX Standards (Distilled)
+
+## Technical Stack
+- **SRP**: Universal Render Pipeline (URP).
+- **Primary Tool**: Shader Graph & VFX Graph.
+- **HLSL**: Only for custom functions or complex lighting models.
+
+## Performance Requirements
+- **Overdraw**: Minimize transparent layers; use opaque/clip where possible.
+- **Batching**: Support **SRP Batcher** (Constant Buffers for properties).
+- **Textures**: Max 2-4 samples per fragment. Use packed maps (R:Mask, G:Smooth, B:AO).
+- **Precision**: Use `half` for colors/math unless `float` is required for position/depth.
+
+## VFX Standards
+- **Simulation**: Prefer GPU Simulation for high-count particles.
+- **Trigger**: Script-to-VFX via `VFX.SetEvent("OnTrigger")`.

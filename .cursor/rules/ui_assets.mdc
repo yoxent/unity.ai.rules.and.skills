@@ -1,0 +1,14 @@
+---
+description: "UI Standards and Asset Loading"
+globs: ["**/UI/**", "**/*.prefab", "**/*.unity", "Assets/Resources/**"]
+---
+
+# UI & Assets Standards
+
+## 1. UI Stack
+- Framework: **Unity UI Canvas (UGUI)**.
+- Text: Use **TextMeshPro (TMP)** for all UI text. No legacy Text components.
+
+## 2. Asset Management
+- Standard: **Addressables** is mandatory for runtime loading.
+- Exceptions: `Resources.Load` permitted **ONLY** for `Assets/Resources/Data/*`.

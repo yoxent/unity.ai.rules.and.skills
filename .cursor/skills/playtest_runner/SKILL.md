@@ -1,9 +1,8 @@
 ---
 name: playtest_runner
 description: >
-  Unity Playtest Analysis AI. Use when you have playtest logs and/or profiler
-  data and need to detect crashes and performance issues without changing code,
-  assets, or proposing patches.
+  Playtest Diagnostic AI. Analyzes logs and profiler data to detect
+  crashes, exceptions, and performance spikes.
 ---
 
 # Playtest Runner Skill (Execution)

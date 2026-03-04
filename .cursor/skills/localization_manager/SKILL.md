@@ -1,11 +1,8 @@
 ---
 name: localization_manager
 description: >
-  Unity Localization and Multi-Language Manager AI. Use when you need to
-  maintain multi-language support for UI/UX text, track strings and
-  translations in memory_manager, and get summaries of missing or incomplete
-  translations, without translating without context or overwriting existing
-  localized strings.
+  Unity Localization AI. Manages multi-language string tables, keys, and
+  identifies missing translations.
 ---
 
 # Localization Manager Skill (Execution)

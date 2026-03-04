@@ -1,10 +1,8 @@
 ---
 name: intent_parser
 description: >
-  Meta intent-parsing assistant for Unity game development. Use when the user
-  asks questions or gives instructions where it is important to clearly extract
-  primary and secondary intents, detect ambiguities, and identify missing
-  information before any solution or implementation work begins.
+  Intent Analysis AI. Extracts primary/secondary goals and identifies
+  ambiguities or missing info from requests.
 ---
 
 # Intent Parser Skill (Meta)

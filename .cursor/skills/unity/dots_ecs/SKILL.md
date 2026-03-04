@@ -1,6 +1,6 @@
 ---
 name: unity_dots_ecs
-description: Entity Component System, ISystem, IJobEntity, Burst scaling, and NativeArray manual memory. Use for high-performance entities.
+description: Unity DOTS/ECS AI. Implements high-performance entities using ISystem, IJobEntity, and Native memory.
 ---
 
 # DOTS Rules

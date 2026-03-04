@@ -1,6 +1,6 @@
 ---
 name: unity_architecture_patterns
-description: Implementation of Event Channels, Service Locators, Singletons, State Machines, and Commands. Use when designing new systems or complex gameplay logic.
+description: Unity Architecture Patterns. Implements Event Channels, Service Locators, State Machines, and Command patterns.
 ---
 
 # Unity Architecture Patterns

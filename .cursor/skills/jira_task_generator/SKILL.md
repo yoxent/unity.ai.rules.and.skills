@@ -1,11 +1,8 @@
 ---
 name: jira_task_generator
 description: >
-  Jira Kanban Task Generator. Use when the user wants to turn a feature, bug,
-  improvement, or idea into a single Jira-ready task with title, short
-  description, and actionable checklist for manual copy-paste into Jira. Human
-  productivity tool only—do not invoke from Orchestrator, store in
-  memory_manager, or use for AI execution planning.
+  Jira Task Utility. Converts features/bugs into JSON-ready Kanban tasks
+  with actionable checklists.
 ---
 
 # Jira Task Generator (Execution)

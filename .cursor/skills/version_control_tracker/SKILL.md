@@ -2,9 +2,7 @@
 name: version_control_tracker
 description: >
   Version Control and Change Tracking AI. Use when you need to track changes
-  made by execution skills, store file snapshots before patches, suggest safe
-  rollback points, and maintain history of applied patches and outcomes,
-  without modifying project files or merging automatically.
+  made by execution skills, store file snapshots, and suggest rollback points.
 ---
 
 # Version Control Tracker Skill (Meta)

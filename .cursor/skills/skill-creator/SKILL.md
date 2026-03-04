@@ -1,6 +1,9 @@
 ---
 name: skill-creator
-description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
+description: >
+  Manual-only. Use only when the user explicitly asks to create or edit a skill.
+  Do not select for normal requests. Skill Development Guide for creating,
+  iterating, and packaging new AI skills.
 license: Complete terms in LICENSE.txt
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: unity_code_standards
-description: Detailed C# guidelines, MonoBehaviour lifecycle, Serialization attributes, and XML documentation. Use when writing or refactoring C# code for Unity.
+description: C# Best Practices. Enforces naming, lifecycle ordering, serialization attributes, and code documentation standards.
 ---
 
 # C# & MonoBehaviour Standards

@@ -2,8 +2,7 @@
 name: ui_ux_copywriter
 description: >
   UI/UX Copywriting AI. Use when you need concise, friendly UI strings and
-  localization-ready key/string mappings, without designing layouts, modifying
-  UI prefabs, or including unlabeled placeholders.
+  localization-ready key/string mappings.
 ---
 
 # UI/UX Copywriter Skill (Execution)

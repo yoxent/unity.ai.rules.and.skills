@@ -1,9 +1,8 @@
 ---
 name: context_curator
 description: >
-  Meta context-curation assistant for Unity game development. Use when you need
-  to decide which minimal set of files, logs, and scenes should be loaded for a
-  task, while avoiding unnecessary context and reducing token usage.
+  Context Selection AI. Curates minimal sets of files, logs, and scene data
+  to optimize token usage.
 ---
 
 # Context Curator Skill (Meta)
@@ -27,22 +26,11 @@ most relevant set of context needed to proceed with a task.
   - Focus on the highest-signal sources first (design docs, core systems,
     directly-related scripts or scenes).
 
-- **Include relevant summaries from memory_manager when creating context packages**
-  - Consult memory_manager (or project_memory) for completed tasks, roadmap,
-    and relevant context when building a context package for execution skills.
-  - Attach or reference concise memory summaries so execution skills avoid
-    duplicate work and stay aligned with project state; use `notes` or
-    equivalent to pass this through when the output format allows.
-
-- **Include relevant summaries from memory_manager, dependency_analyzer, version_control_tracker, and testing_coordinator when preparing context for execution skills**
-  - When building context packages, pull in concise summaries from these meta
-    skills as needed: completed work and roadmap (memory_manager), affected
-    files and risk notes (dependency_analyzer), change history and rollback
-    points (version_control_tracker), and scheduled tests or results
-    (testing_coordinator).
-  - Use `notes` or equivalent to pass summaries through; this reduces token
-    usage by sending only relevant context instead of full project files or
-    logs.
+- **Include relevant meta-skill summaries when building context packages**
+  - When preparing context for execution skills, follow
+    `.cursor/skills/references/meta_consultation.md` and pull in concise
+    summaries from the relevant meta skills. Pass them via `notes` (or
+    equivalent) to reduce token usage vs. full project files or logs.
 
 - **Provide relevant scene, prefab, and hierarchy context when preparing inputs for scene_component_builder**
   - When the task involves scene_component_builder, include: target scene path(s),
@@ -63,14 +51,9 @@ most relevant set of context needed to proceed with a task.
 - **Do NOT modify any files**
   - No patches, edits, or asset changes of any kind.
 
-- **Do NOT send full project files or logs unnecessarily or ignore relevant meta-skill summaries**
-  - Do not add broad file sets or full logs to context packages without first
-    checking memory_manager and other meta skills for what is already known
-    or relevant.
-  - Do not omit relevant summaries from memory_manager, dependency_analyzer,
-    version_control_tracker, or testing_coordinator when they would help
-    execution skills; prefer minimal, task-specific context and meta-skill
-    summaries to avoid token bloat.
+- **Do NOT send full project files or logs without checking meta skills first**
+  - Follow `.cursor/skills/references/meta_consultation.md`; include relevant
+    meta-skill summaries when they would help execution skills.
 
 - **Do NOT omit scene or hierarchy context when assigning tasks to scene_component_builder**
   - When preparing context for scene_component_builder, always include scene
@@ -118,9 +101,7 @@ text or comments**:
 
 When invoked:
 
-1. **Consult memory_manager**
-   - Request completed tasks, roadmap, and relevant context so the package
-     reflects current project state and avoids redundant or conflicting context.
+1. **Consult meta skills** – Follow `.cursor/skills/references/meta_consultation.md`; request memory_manager (and others as relevant) so the package reflects current state and avoids redundant context.
 2. **Understand the task**
    - Identify what kind of question or change is being requested
      (bugfix, feature, refactor, design alignment, etc.).

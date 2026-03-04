@@ -1,6 +1,6 @@
 ---
 name: unity_testing
-description: Standardized Edit/Play mode tests using the AAA pattern and NUnit Constraint model. Use when writing unit tests or integration tests.
+description: Unity Testing Standards. Implements Edit/Play mode tests using AAA pattern and NUnit model.
 ---
 
 # Testing Standards

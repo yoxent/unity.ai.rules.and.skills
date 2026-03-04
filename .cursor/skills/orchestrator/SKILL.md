@@ -1,12 +1,8 @@
 ---
 name: orchestrator
 description: >
-  Meta-controller for Unity game development skills. Use when the user asks
-  high-level questions about goals, workflows, or next steps, and when multiple
-  Unity-focused skills might apply. This skill interprets developer intent,
-  selects appropriate skills, determines execution order, identifies required
-  context, and assesses overall risk level, without directly modifying code or
-  assets.
+  Unity Meta-controller. Analyzes high-level goals, orchestrates
+  multi-skill workflows, and assesses project risk.
 ---
 
 # Orchestrator Skill (Meta)
@@ -68,31 +64,12 @@ without performing the work yourself.
     - **New feature implementation** → feature_implementer (and design/context as needed).
   - Do not treat new features as fixes or refactors.
 
-- **Consult memory_manager for past tasks, context, and outcomes before planning**
-  - Query the memory_manager skill (or project_memory; names are interchangeable) for
-    completed tasks, roadmap, and relevant context before selecting skills or
-    building the execution plan.
-  - Use this to provide summaries from memory to execution skills when
-    relevant.
-
-- **Consult memory_manager, version_control_tracker, dependency_analyzer, and testing_coordinator before assigning tasks**
-  - Before routing, query these supporting meta skills for: completed work and
-    roadmap (memory_manager), change history and rollback state
-    (version_control_tracker), affected files and dependency risks
-    (dependency_analyzer), and scheduled or required tests
-    (testing_coordinator).
-  - Use their outputs to avoid duplicate work, respect dependencies, and
-    schedule tests for high-risk tasks.
-
-- **Avoid duplicating work that is already completed or violates dependency constraints**
-  - Cross-check the current request against completed tasks and roadmap in
-    memory_manager; do not assign steps that duplicate already completed work.
-  - Respect dependency_analyzer findings so planned steps do not conflict with
-    dependency chains or introduce breakages.
-
-- **Ensure tests are scheduled and considered for high-risk tasks**
-  - For medium- or high-risk plans, ensure testing_coordinator is consulted and
-    that tests are included in the execution plan or recommended next steps.
+- **Consult meta skills before planning**
+  - Before selecting skills or building the execution plan, follow
+    `.cursor/skills/references/meta_consultation.md` for when and how to query
+    memory_manager, dependency_analyzer, version_control_tracker, and
+    testing_coordinator. Use their outputs to avoid duplicate work, respect
+    dependencies, and schedule tests for high-risk tasks.
 
 ## Hard Constraints (DO NOT)
 
@@ -123,16 +100,13 @@ without performing the work yourself.
   - Scene creation, hierarchy setup, and GameObject/component wiring must go to
     scene_component_builder, not to feature_implementer or prefab_scene_generator.
 
-- **Do NOT assume the AI remembers past tasks without querying memory_manager**
-  - Do not rely on conversation history or implicit memory for completed work.
-  - Always obtain past tasks, context, and outcomes from memory_manager (or
-    equivalent memory manager) before planning.
+- **Do NOT select or suggest skill-creator**
+  - skill-creator is **manual-only**: the user invokes it explicitly when creating or editing skills. Never include it in `skills_to_call` or in any automated plan.
 
-- **Do NOT assume previous work, dependencies, or tests without consulting supporting meta skills**
-  - Do not infer completed work, dependency impact, or test requirements from
-    conversation alone; consult memory_manager, version_control_tracker,
-    dependency_analyzer, and testing_coordinator as appropriate before
-    assigning tasks.
+- **Do NOT assume past work, dependencies, or tests without consulting meta skills**
+  - Do not rely on conversation history. Before planning, follow
+    `.cursor/skills/references/meta_consultation.md` and query the relevant
+    meta skills.
 
 You only **analyze** and **plan**; other agents/skills perform the actual work.
 
@@ -183,9 +157,7 @@ text or comments**:
 
 When invoked:
 
-1. **Query memory_manager**
-   - Request completed tasks, roadmap, and relevant context from memory_manager
-     (or equivalent memory manager) before making routing decisions.
+1. **Query meta skills** – Follow `.cursor/skills/references/meta_consultation.md`; request memory_manager (and others as relevant) before routing.
 2. **Interpret intent**
    - Extract 1–5 concise bullet-style intents from the user request.
 3. **Map intents to skills**

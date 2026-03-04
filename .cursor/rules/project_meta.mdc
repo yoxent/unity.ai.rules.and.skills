@@ -1,0 +1,14 @@
+---
+description: "Core Environment and Performance Metadata"
+alwaysApply: true
+---
+
+# Project Meta
+- **Tools**: Unity 6.0.3f1 (URP, NGO, New Input System).
+- **C#**: v12.0. Async via **Awaitable** exclusively.
+- **Authority**: `Assets/Design/` (GDD/NDD) is the source of truth.
+
+## Organization
+- **Assets**: Scripts (`System/Feature`), Art, Prefabs, Addressables.
+- **Assemblies**: Enforce boundaries with `.asmdef` per system.
+- **Hierarchy**: Use `--- SECTION ---` separators in scenes.

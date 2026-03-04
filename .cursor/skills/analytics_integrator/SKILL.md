@@ -1,10 +1,8 @@
 ---
 name: analytics_integrator
 description: >
-  Unity Analytics Integration AI. Use when you need to prepare tracking
-  hooks, telemetry, and in-game analytics events, align integration with
-  project conventions, and provide summaries for QA or memory_manager,
-  without implementing gameplay logic or blindly modifying existing tracking.
+  Unity Analytics AI. Instrument tracking hooks, telemetry, and in-game
+  events following project conventions.
 ---
 
 # Analytics Integrator Skill (Execution)

@@ -1,6 +1,6 @@
 ---
 name: unity_networking
-description: Netcode for GameObjects (NGO) standards, NetworkVariables, RPCs, and state synchronization. Use for multiplayer features.
+description: Unity Multiplayer Utility. Standardizes Netcode for GameObjects (NGO), NetworkVariables, and RPCs.
 ---
 
 # Netcode Rules

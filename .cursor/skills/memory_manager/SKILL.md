@@ -1,12 +1,8 @@
 ---
 name: memory_manager
 description: >
-  Memory Manager (supporting meta skill) for Unity development; also known as
-  project_memory (names are interchangeable). Use when you need to record or
-  query completed tasks, skill usage, outcomes, roadmap, decisions, and
-  assumptions. Provides persistent context to other skills and supports
-  human/AI queries about project state, without executing tasks or modifying
-  code/assets.
+  Project Memory AI. Records and queries task history, roadmap, decisions,
+  and assumptions for persistent context.
 ---
 
 # Memory Manager Skill (Meta – Supporting)

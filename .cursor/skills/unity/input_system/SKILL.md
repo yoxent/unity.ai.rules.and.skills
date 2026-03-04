@@ -1,6 +1,6 @@
 ---
 name: unity_input_system
-description: Configuration and implementation of the New Input System (Actions, PlayerInput, Rebinding). Use when handling player input or movement.
+description: Unity Input System. Configuration and implementation of Actions, PlayerInput, and Rebinding.
 ---
 
 # New Input System Implementation

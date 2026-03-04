@@ -1,0 +1,20 @@
+---
+description: Unity DOTS/ECS Standards. Triggers on ECS-related patterns and namespaces.
+globs: ["**/*System.cs", "**/*Component.cs", "**/*Aspect.cs", "**/DOTS/**", "**/ECS/**"]
+---
+
+# Unity DOTS/ECS Standards (Distilled)
+
+## Technical Stack
+- **Entities**: v1.0+
+- **Systems**: Use **`ISystem`** (struct-based) with **`[BurstCompile]`** by default.
+- **Jobs**: Use **`IJobEntity`** for parallel data iteration.
+
+## Memory & Performance
+- **Allocators**: `Temp` (1 frame), `TempJob` (4 frames), `Persistent`.
+- **Containers**: Use `NativeArray<T>`, `NativeList<T>`, etc. Always dispose.
+- **Access**: Use `in` for read-only; `ref` for read-write in Aspects/Jobs.
+
+## Lifecycle
+- **Initialization**: Logic in `OnCreate`.
+- **Update**: Filter with `SystemAPI.Query<T>` or `EntityQuery`.

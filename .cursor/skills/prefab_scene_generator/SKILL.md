@@ -1,10 +1,8 @@
 ---
 name: prefab_scene_generator
 description: >
-  Unity Prefab & Scene Generator. Use when you need prefab or scene
-  specifications (structure, components, hierarchy) using Unity-standard
-  components, without creating binary assets, modifying existing scenes, or
-  applying changes automatically.
+  Prefab/Scene Specifier. Generates structured JSON specifications for
+  GameObjects, components, and scene layouts.
 ---
 
 # Prefab & Scene Generator Skill (Execution)
@@ -24,16 +22,7 @@ You are a **Unity Prefab & Scene Generator**.
 
 ## Hard Constraints (DO NOT)
 
-- **Do NOT create binary assets**
-  - Do not output .prefab or .unity file bytes or YAML content; only structured JSON that describes what to create.
-
-- **Do NOT modify existing scenes**
-  - Do not alter or patch existing scene or prefab files; only produce new specifications.
-
-- **Do NOT apply changes automatically**
-  - Output is advisory: a tool or user may consume the JSON to create/update assets; this skill does not perform the apply step.
-
-Your role is **specification output only**, not asset authoring or in-editor application.
+- **Follow execution constraints** – `.cursor/skills/references/execution_skills.md` (scope, output). This skill outputs **specifications only**: structured JSON, no .prefab/.unity bytes or YAML, no edits to existing scenes. A tool or user applies the spec; this skill does not apply changes. Role: **specification output only**.
 
 ## Required JSON Output
 

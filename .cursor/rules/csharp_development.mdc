@@ -1,0 +1,22 @@
+---
+description: "C# Coding Standards and Unity Architecture"
+globs: ["**/*.cs"]
+---
+
+# C# & Unity Development Rules
+
+## 1. Naming & Style
+- **Fields**: `[SerializeField] private _camelCase`. No public fields.
+- **Methods/Types**: `PascalCase`.
+- **Async**: Use `Awaitable` (Unity 6). Avoid `async Task`.
+
+## 2. Architecture & Patterns
+- **Decoupling**: ScriptableObject **Event Channels** & **Service Locator**.
+- **Performance**: Cache components in `Awake`. **Zero** `GetComponent` in `Update`.
+- **Pooling**: Use `UnityEngine.Pool.ObjectPool<T>` (Unity 6+) for high-freq objects.
+- **Allocation**: Use `StringBuilder` for `TMP_Text.SetText()` updates.
+
+## 3. Testing
+- **Suite**: NUnit + Triple-A (Arrange, Act, Assert).
+- **Edit Mode**: Logic only (`Tests/EditMode/`).
+- **Play Mode**: GameObject/Physics interactions (`Tests/PlayMode/`).

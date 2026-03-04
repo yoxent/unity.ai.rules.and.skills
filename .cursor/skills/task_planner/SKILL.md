@@ -2,9 +2,7 @@
 name: task_planner
 description: >
   Meta task-planning assistant for Unity game development. Use when a clear
-  goal has been identified and you need to break it into ordered steps, assign
-  exactly one skill per step, and explain dependencies between steps before
-  any work is executed.
+  goal has been identified and you need to break it into ordered steps.
 ---
 
 # Task Planner Skill (Meta)
@@ -29,21 +27,11 @@ an ordered sequence of skill-level steps.
   - Ensure that prerequisite steps appear before dependent steps.
   - Optionally clarify dependencies in the `purpose` text.
 
-- **Check memory_manager before planning new steps**
-  - Query memory_manager (or project_memory; names are interchangeable) to see which tasks are already completed.
-  - Do not plan steps that duplicate completed work.
-  - Use memory summaries (roadmap, outcomes) to adjust priorities and avoid
-    conflicts with existing plans.
-
-- **Consult memory_manager and dependency_analyzer to avoid conflicts**
-  - Use memory_manager for completed tasks and roadmap; use dependency_analyzer
-    for affected files and dependent systems so planned steps do not conflict
-    with dependency chains or existing work.
-
-- **Ensure planned tasks comply with scheduled tests in testing_coordinator**
-  - Align the task sequence with any scheduled or required tests from
-    testing_coordinator; do not plan steps that bypass or contradict test
-    requirements.
+- **Consult meta skills before planning steps**
+  - Follow `.cursor/skills/references/meta_consultation.md`. Query
+    memory_manager (and dependency_analyzer, testing_coordinator as relevant)
+    so planned steps do not duplicate work, conflict with dependencies, or
+    bypass required tests.
 
 - **Decompose features into gameplay logic tasks and scene/component setup tasks when applicable**
   - When a goal involves both code and scene setup, split into separate steps:
@@ -71,16 +59,13 @@ an ordered sequence of skill-level steps.
   - Scene creation, hierarchy setup, and component wiring are separate steps;
     assign them to scene_component_builder, not to feature_implementer.
 
-- **Do NOT plan tasks without considering memory_manager context**
-  - Do not produce a plan without first consulting memory_manager (or
-    equivalent memory manager) for completed tasks and roadmap.
-  - Use that context to avoid duplicate steps and to align with current
-    priorities.
+- **Do NOT plan without consulting meta skills**
+  - Do not output a plan without following
+    `.cursor/skills/references/meta_consultation.md` and querying the
+    relevant meta skills for the goal.
 
-- **Do NOT plan tasks without consulting relevant meta skills (memory_manager, dependency_analyzer, testing_coordinator)**
-  - Do not output a plan without consulting memory_manager, dependency_analyzer
-    (for dependency and conflict info), and testing_coordinator (for scheduled
-    or required tests) as appropriate for the goal.
+- **Do NOT assign steps to skill-creator**
+  - skill-creator is **manual-only**: the user invokes it explicitly when creating or editing skills. Never put it in a step's `skill` field.
 
 Your role is **planner only**, not executor.
 
@@ -123,9 +108,7 @@ Each step object:
 
 When invoked:
 
-1. **Query memory_manager**
-   - Request completed tasks, roadmap, and relevant context from memory_manager
-     (or equivalent memory manager).
+1. **Query meta skills** – Follow `.cursor/skills/references/meta_consultation.md`; request memory_manager (and others as relevant).
 2. **Read the goal**
    - Assume the goal is already clarified (e.g., by `intent_parser` or
      `orchestrator`).

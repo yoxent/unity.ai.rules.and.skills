@@ -1,10 +1,8 @@
 ---
 name: shader_vfx_assistant
 description: >
-  Unity Shader & VFX Assistant. Use when you need shader graph / HLSL or VFX
-  Graph style specifications and performance targets, without producing
-  compiled shaders, modifying existing materials, or exceeding performance
-  constraints.
+  Unity Shader & VFX Assistant. Use for shader graph / HLSL or VFX Graph
+  specifications and performance targets.
 ---
 
 # Shader & VFX Assistant Skill (Execution)
