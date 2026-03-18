@@ -1,6 +1,6 @@
 ---
 name: unity_design_reference
-description: How to use Assets/Design/ as the authoritative source for game logic, lore, and mechanics. Use when planning new features or story content.
+description: Design Document Authority. Uses Assets/Design/ as the source of truth for mechanics, lore, and logic.
 ---
 
 # Design Authority

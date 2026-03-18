@@ -1,10 +1,8 @@
 ---
 name: procedural_content_generator
 description: >
-  Procedural Content Generator for Unity. Use when you need structured
-  procedural data (e.g. level layouts, loot tables, spawn configs) that
-  respects provided constraints, without generating raw assets, modifying
-  existing content, or hardcoding randomness.
+  Procedural Data AI. Generates seed-driven level layouts, loot tables, and
+  spawn configurations.
 ---
 
 # Procedural Content Generator Skill (Execution)

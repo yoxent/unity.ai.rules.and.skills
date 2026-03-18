@@ -1,11 +1,8 @@
 ---
 name: code_reviewer_linter
 description: >
-  AI Code Reviewer and Linter for Unity C# projects. Use when you need to
-  check new or modified code for style, best practices, and performance,
-  suggest improvements, highlight potential issues, and produce actionable
-  feedback for developers or AI, without modifying code or implementing
-  features.
+  Unity C# Reviewer. Lints code for style, performance, and best practices
+  using project-specific standards.
 ---
 
 # Code Reviewer & Linter Skill (Execution)

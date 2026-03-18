@@ -2,10 +2,7 @@
 name: testing_coordinator
 description: >
   Testing Coordinator AI for Unity projects. Use when you need to schedule
-  automated tests or playtests from recent changes, prioritize critical
-  features for testing, collect and summarize test results, and store results
-  in memory_manager for future context, without executing code or modifying
-  project files.
+  automated tests or playtests and prioritize critical features for testing.
 ---
 
 # Testing Coordinator Skill (Meta)
@@ -87,9 +84,7 @@ text or comments**:
 
 When invoked:
 
-1. **Gather context**
-   - Obtain recent changes (from memory_manager, version_control_tracker, or
-     task context) and any existing test results or requirements.
+1. **Gather context** – Follow `.cursor/skills/references/meta_consultation.md` when obtaining recent changes and test requirements (memory_manager, version_control_tracker, task context).
 2. **Schedule tests**
    - Populate `scheduled_tests` based on what changed and what is required.
 3. **Set priorities**

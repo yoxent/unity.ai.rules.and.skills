@@ -1,9 +1,8 @@
 ---
 name: risk_assessor
 description: >
-  Meta risk-assessment assistant for Unity game development. Use when a planned
-  change or set of tasks needs a risk level, list of affected areas, and a
-  rollback strategy, without blocking execution or modifying files.
+  Risk Assessment AI. Evaluates project-wide impact, regression potential,
+  and proposes rollback strategies for plans.
 ---
 
 # Risk Assessor Skill (Meta)

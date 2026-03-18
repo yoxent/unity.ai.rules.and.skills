@@ -1,9 +1,8 @@
 ---
 name: economy_balancer
 description: >
-  Game Economy Balancer. Use when you need to tune progression and rewards
-  under explicit constraints, without modifying live data, applying changes
-  automatically, or removing player progression.
+  Game Economy Balancer. Tunes progression curves, rewards, and item drop
+  rates under design constraints.
 ---
 
 # Economy Balancer Skill (Execution)

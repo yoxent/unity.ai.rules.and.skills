@@ -1,9 +1,8 @@
 ---
 name: build_ci_generator
 description: >
-  Unity Build & CI Generator. Use when you need safe, best-practice build and
-  CI configurations for Unity, without accessing credentials, modifying
-  existing pipelines, or triggering builds.
+  Unity Build & CI Utility. Generates safe, platform-specific build scripts
+  and automated pipeline configurations.
 ---
 
 # Build & CI Generator Skill (Execution)

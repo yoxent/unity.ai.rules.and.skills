@@ -1,6 +1,6 @@
 ---
 name: unity_performance_optimization
-description: Memory management, native Object Pooling, Addressables optimization, and Update loop rules. Use when optimizing code or handling many objects.
+description: Unity Performance Utility. Optimized Object Pooling, Addressables, and Update loop management.
 ---
 
 # Performance Rules

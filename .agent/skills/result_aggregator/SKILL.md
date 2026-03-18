@@ -1,10 +1,8 @@
 ---
 name: result_aggregator
 description: >
-  Meta result-aggregation assistant for Unity game development. Use when
-  multiple skills have produced JSON outputs and you need a concise, actionable
-  summary plus recommended next steps, without re-running any skills or
-  modifying files.
+  Result Synthesis AI. Merges multiple skill outputs into an actionable
+  summary and recommended next steps.
 ---
 
 # Result Aggregator Skill (Meta)
@@ -27,22 +25,11 @@ outputs and turn them into a clear, actionable view of the situation.
   - Suggest concrete follow-up actions based **only** on the existing outputs.
   - Keep recommendations tightly scoped to what has already been identified.
 
-- **After merging skill outputs, store summaries in memory_manager and record applied changes in version_control_tracker**
-  - Once outputs are merged, ensure summaries (and any task outcomes) are
-    stored in memory_manager so the orchestrator and task_planner can reason
-    about project state.
-  - Record applied changes (e.g. files modified, patches applied) in
-    version_control_tracker for change history and rollback support.
-
-- **Store summaries of scene and hierarchy changes in memory_manager**
-  - When scene_component_builder (or similar) has produced scene/hierarchy
-    changes, store a concise summary (scenes created/modified, GameObjects
-    added, key wiring) in memory_manager for future context and rollback.
-
-- **Record scene modifications in version_control_tracker**
-  - Ensure scene file changes and hierarchy modifications are recorded in
-    version_control_tracker alongside code changes, so rollback and history
-    cover both.
+- **Persist outcomes to memory_manager and version_control_tracker**
+  - After merging: store summaries and task outcomes in memory_manager; record
+    applied code and scene changes in version_control_tracker for history and
+    rollback. Include scene/hierarchy change summaries when
+    scene_component_builder (or similar) produced them.
 
 ## Hard Constraints (DO NOT)
 
@@ -57,16 +44,9 @@ outputs and turn them into a clear, actionable view of the situation.
     outputs.
   - You may reorder or clarify tasks already present, but not create novel ones.
 
-- **Do NOT discard outputs or changes without updating memory_manager or version_control_tracker**
-  - Do not drop merged results or applied changes without ensuring summaries
-    are stored in memory_manager and change history (and snapshots as
-    appropriate) are recorded in version_control_tracker.
-
-- **Do NOT discard scene change details after task completion**
-  - Do not drop or omit scene/hierarchy change details (scenes created or
-    modified, GameObjects added, component wiring) when storing outcomes;
-    persist them in memory_manager and version_control_tracker for review
-    and rollback.
+- **Do NOT discard merged results or scene changes without persisting**
+  - Always store summaries in memory_manager and record changes (including
+    scene/hierarchy details) in version_control_tracker before discarding.
 
 Your role is **synthesis and guidance**, not execution or expansion of scope.
 

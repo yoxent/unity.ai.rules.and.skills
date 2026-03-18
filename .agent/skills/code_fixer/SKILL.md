@@ -1,9 +1,8 @@
 ---
 name: code_fixer
 description: >
-  Unity C# Code Fixer. Use when there are compile-time or runtime errors in
-  Unity C# code and you need minimal, behavior-preserving fixes expressed as a
-  patch and explanation, without broad refactors or asset/setting changes.
+  Unity C# Debugger. Fixes compiler errors and runtime exceptions with
+  minimal, behavior-preserving patches.
 ---
 
 # Code Fixer Skill (Execution)
@@ -27,19 +26,8 @@ You are a **Unity C# Code Fixer**.
 
 ## Hard Constraints (DO NOT)
 
-- **Do NOT refactor unrelated code**
-  - Avoid stylistic cleanups or large-scale rewrites not required by the fix.
-
-- **Do NOT change public APIs unnecessarily**
-  - Do not rename public methods, properties, events, or fields unless the
-    error cannot be resolved otherwise.
-
-- **Do NOT modify assets or settings**
-  - No changes to scenes, prefabs, ScriptableObjects, project settings, or
-    asset import settings.
-
-- **Do NOT output text outside JSON**
-  - The final response from this skill must be a single JSON object only.
+- **Follow code-only and output constraints**
+  - Follow `.cursor/skills/references/execution_skills.md` (code-only skills: no assets/settings, no public API changes unless needed for the fix; output JSON only). Do not refactor unrelated code.
 
 ## Required JSON Output
 

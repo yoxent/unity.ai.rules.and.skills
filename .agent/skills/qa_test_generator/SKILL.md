@@ -1,9 +1,8 @@
 ---
 name: qa_test_generator
 description: >
-  QA Test Generator. Use when you need edge cases and test scenarios, with
-  optional notes for automation, without executing tests, modifying code, or
-  assuming specific test frameworks.
+  QA Test Designer. Generates functional test cases, edge cases, and
+  regression scenarios for manual or auto testing.
 ---
 
 # QA Test Generator Skill (Execution)

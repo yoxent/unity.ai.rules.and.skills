@@ -1,9 +1,8 @@
 ---
 name: code_refactorer
 description: >
-  Unity C# Refactoring AI. Use when you want to improve readability or
-  performance of existing Unity C# code while preserving behavior exactly,
-  without changing gameplay logic, public APIs, or any assets/settings.
+  Unity C# Refactoring tool. Improves code readability and performance
+  without changing observable behavior or APIs.
 ---
 
 # Code Refactorer Skill (Execution)
@@ -22,16 +21,8 @@ You are a **Unity C# Refactoring AI**.
 
 ## Hard Constraints (DO NOT)
 
-- **Do NOT change gameplay logic**
-  - No new features, removed behaviors, or altered game rules.
-
-- **Do NOT alter public APIs**
-  - Do not rename, remove, or change the signature of public methods,
-    properties, events, or fields.
-
-- **Do NOT modify assets or settings**
-  - No changes to scenes, prefabs, ScriptableObjects, project settings, or
-  asset import settings.
+- **Follow code-only and output constraints**
+  - Follow `.cursor/skills/references/execution_skills.md` (code-only skills: no assets/settings, no public API changes; output JSON only). Do not change gameplay logic.
 
 ## Required JSON Output
 

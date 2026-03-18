@@ -1,10 +1,8 @@
 ---
 name: dependency_analyzer
 description: >
-  Dependency Analysis AI for Unity projects. Use when you need to analyze
-  code and assets for dependencies, see how proposed changes interact with
-  existing systems, and surface potential conflicts or breakages before
-  execution, without applying changes or modifying files.
+  Dependency Tracker. Analyzes project references to identify impact zones
+  and potential conflicts for changes.
 ---
 
 # Dependency Analyzer Skill (Meta)

@@ -1,6 +1,6 @@
 ---
 name: unity_ui_systems
-description: Guidelines for Unity UI Canvas (Primary) and UI Toolkit. Handles UXML, USS, RectTransform, and TMP. Use when creating or modifying UI.
+description: Unity UI Systems. Guidelines for UGUI (Primary) and UI Toolkit with TextMeshPro standards.
 ---
 
 # UI Implementation

@@ -1,9 +1,8 @@
 ---
 name: behavior_tree_designer
 description: >
-  NPC Behavior Designer. Use when you need to design behavior trees (BT) or
-  finite state machines (FSM) for NPCs, optimized for clarity and performance,
-  without implementing code, changing existing behaviors, or altering game balance.
+  NPC Behavior Designer. Design AI Behavior Trees (BT) and Finite State
+  Machines (FSM) structures.
 ---
 
 # Behavior Tree Designer Skill (Execution)
