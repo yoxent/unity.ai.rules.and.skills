@@ -1,21 +1,14 @@
 ---
-description: Multiplayer & Networking Standards. Triggers on networking folders and script patterns.
+description: NGO networking guardrails
 globs: ["**/Networking/**", "**/Multiplayer/**", "**/*Network*.cs", "**/*Rpc.cs"]
 ---
 
-# Multiplayer Standards (Distilled)
-
-## Technical Stack
-- **Framework**: Netcode for GameObjects (NGO).
-- **Transport**: Unity Transport (UTP).
-
-## Authority & Sync
-- **Model**: Server Authoritative logic. Client-side prediction for movement.
-- **State**: Use **`NetworkVariable<T>`** for persistent state syncing.
-- **Events**: Use **`[ServerRpc]`** for client requests; **`[ClientRpc]`** for notifications.
-
-## Best Practices
-- **Validation**: All `ServerRpc` calls MUST be validated on the server.
-- **Bandwidth**: Use bit-packing or limited precision for floats (Send `Vector3` only when delta > threshold).
-- **Lifecycle**: Logic belongs in `OnNetworkSpawn()` / `OnNetworkDespawn()`.
-- **Security**: Never trust client-provided positions or stats directly.
+# Multiplayer Rules
+- Stack: Netcode for GameObjects (NGO) + Unity Transport.
+- Model: server-authoritative; client prediction only where needed.
+- Persistent sync via `NetworkVariable<T>`.
+- RPC roles: `[ServerRpc]` for client requests, `[ClientRpc]` for server notifications.
+- Validate every `ServerRpc` on server side.
+- Reduce bandwidth (quantize/bit-pack; send vectors only on meaningful delta).
+- Put network lifecycle logic in `OnNetworkSpawn` / `OnNetworkDespawn`.
+- Never trust client-sent positions, stats, or authority claims.
