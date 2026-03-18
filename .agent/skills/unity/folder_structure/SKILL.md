@@ -7,7 +7,9 @@ description: Unity Project Organization. Rules for folder patterns, Assembly Def
 
 ## Assets/ Subdirectory Mapping
 - `Art/`: Materials, Models, Textures, Animations, Sprites.
-- `Scripts/`: Runtime (Core, Gameplay, UI, Utilities, DOTS), Editor, Tests.
+- `Systems/`: Reusable modules (own `Scripts/Runtime`, optional `Scripts/Editor`, `Tests`).
+- `Features/`: Project-specific gameplay (own `Scripts/Runtime`, optional prefabs/scenes/tests).
+- `Core/`: Shared project glue (event bus, settings, service locator, shared UI).
 - `AddressableAssets/`: Content organized by concurrent usage or logical entity strategy.
 - `Prefabs/`: Consistent subfolders for Characters, Environment, UI, and Effects.
 

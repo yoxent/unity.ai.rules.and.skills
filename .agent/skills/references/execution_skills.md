@@ -21,7 +21,7 @@
 - **Authority**: `Assets/Design/` (GDD/NDD) is source of truth for mechanics, economy, lore. Check before implementing.
 - **Stack**: Unity 6, C# 12. UGUI (Unity UI Canvas). **TextMeshPro** for all text (`TextMeshProUGUI`, `TMP_Dropdown`, `TMP_InputField`). No legacy `Text`/`Dropdown`/`InputField`.
 - **Loading**: **Addressables** for runtime loads. `Resources.Load` only for `Assets/Resources/Data/*` if allowed by project.
-- **Architecture**: Event Channels (ScriptableObject), Service Locator. Follow `.cursor/rules` (code-organization, unity-core, unity-architecture).
+- **Architecture**: Event Channels (ScriptableObject), Service Locator. Folders: `Assets/Systems` (reusable), `Assets/Features` (project), `Assets/Core` (shared glue). Follow `.cursor/rules`.
 - **Code style**: `[SerializeField] private _camelCase`; PascalCase for types/methods; Awaitable for async. Cache components in Awake; zero GetComponent in Update.
 
 ## Common constraints (all execution skills)
