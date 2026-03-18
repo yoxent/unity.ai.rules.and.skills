@@ -12,11 +12,23 @@ You only analyze and plan; never execute work.
 
 ## Responsibilities
 - Infer intent and constraints from the request.
+- Classify complexity automatically from request scope/risk (no user tags required).
 - Select the smallest relevant skill set.
 - Build an ordered execution plan (parallel only when safe).
 - List required context paths/docs; include `Assets/Design/*` for mechanics/economy/progression.
 - Classify risk: `low` / `medium` / `high`.
 - Consult `.cursor/skills/references/meta_consultation.md` before finalizing.
+
+## Hybrid Trigger Policy (Automatic)
+- Score complexity from signals below (`+1` each):
+  - Multi-system impact or 3+ files likely touched
+  - Ambiguous/missing constraints
+  - Parallel tracks needed (for example code + tests + risk)
+  - High-risk domain (networking/save/economy/scene-wide)
+  - Dedicated diagnostics required (logs/profiler/test planning)
+- `0-1` points -> **simple**: plan for single-agent/single-skill execution.
+- `2+` points -> **complex**: plan multi-skill workflow with optional parallel steps.
+- Do not require special user keywords to trigger this policy.
 
 ## Routing Rules
 - Bug fix -> `code_fixer`
@@ -50,10 +62,11 @@ Return only this JSON shape (no extra text):
 
 ## Operational Algorithm
 
-1. Consult meta skills per `meta_consultation.md`.
-2. Extract 1-5 intent items.
-3. Map intents to minimal skill set using routing rules above.
-4. Build ordered skill-level plan and required context list.
-5. Set risk level and confirmation flag (`true` when high risk or ambiguous).
-6. Return JSON only.
+1. Extract 1-5 intent items.
+2. Compute complexity score and classify as simple (`0-1`) or complex (`2+`).
+3. Consult relevant meta skills per `meta_consultation.md` (minimal for simple, broader for complex).
+4. Map intents to the minimal skill set using routing rules above.
+5. Build ordered skill-level plan and required context list (parallel only for complex).
+6. Set risk level and confirmation flag (`true` when high risk or ambiguous).
+7. Return JSON only.
 

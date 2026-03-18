@@ -15,6 +15,9 @@ Selection only; never edit files.
 - Prefer exact paths over broad globs/directories.
 - Follow `.cursor/skills/references/meta_consultation.md` and include concise meta summaries in `notes` when helpful.
 - For scene tasks (`scene_component_builder`), include scene paths, prefab refs, and hierarchy expectations.
+- Apply hybrid depth automatically:
+  - Simple tasks -> tiny context set (only must-read files).
+  - Complex tasks -> broader but still minimal package across code/logs/scenes.
 
 ## Hard Constraints
 - Never return whole-project context (`Assets/**`, full workspace, full logs) unless strictly required.
@@ -38,7 +41,8 @@ Return only this JSON shape (no extra text):
 
 1. Consult meta skills per `meta_consultation.md`.
 2. Map request type to needed context types.
-3. Choose minimal specific items; avoid noisy or broad context.
-4. Add short rationale/exclusions in `notes`.
-5. Return JSON only.
+3. Scale package depth to task complexity (simple vs complex).
+4. Choose minimal specific items; avoid noisy or broad context.
+5. Add short rationale/exclusions in `notes`.
+6. Return JSON only.
 
