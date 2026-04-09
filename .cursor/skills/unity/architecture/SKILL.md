@@ -1,6 +1,6 @@
 ---
 name: unity_architecture_patterns
-description: Unity Architecture Patterns. Implements Event Channels, Service Locators, State Machines, and Command patterns.
+description: Unity Architecture Patterns. Implements Event Channels, Composition Root DI, State Machines, and Command patterns.
 ---
 
 # Unity Architecture Patterns
