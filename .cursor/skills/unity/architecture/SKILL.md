@@ -17,8 +17,8 @@ public class IntEventChannel : ScriptableObject {
 }
 ```
 
-## Dependency Injection (Service Locator)
-Use a persistent `ServiceLocator` to register and retrieve cross-system managers (e.g., `AudioManager`).
+## Dependency Injection (Simple Injector / Composition Root)
+Avoid global/static service locators. Prefer a scene-wired `GameContext` (composition root) that holds references to shared services and is passed explicitly (via serialized field or `Initialize(...)` calls). Keep injection reflection-free and easy to trace in the inspector and via call sites.
 
 ## State Machine
 Use a generic `StateMachine<T>` with `IState` interfaces for characters or game flow management.
